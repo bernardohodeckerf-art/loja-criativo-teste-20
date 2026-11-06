@@ -1,0 +1,126 @@
+[
+  {
+    "id": "aco-barras",
+    "name": "Aço - Barras",
+    "items": [
+      "Aço 4.2 mm",
+      "Aço 5.0 mm",
+      "Aço 6.3 mm - 1/4",
+      "Aço 8 mm - 5/16",
+      "Aço 10 mm - 3/8",
+      "Aço 12.5 mm - 1/2",
+      "Aço 16 mm - 5/8",
+      "Aço 20 mm - 3/4",
+      "Aço 25 mm - 1 Polegada"
+    ]
+  },
+  {
+    "id": "arame-recozido",
+    "name": "Arame Recozido",
+    "items": [
+      "Arame 10 – fio 3,40",
+      "Arame 12 – fio 2,77",
+      "Arame 14 – fio 2,11",
+      "Arame 16 – fio 1,65",
+      "Arame 18 – fio 1,25"
+    ]
+  },
+  {
+    "id": "tela-soldada",
+    "name": "Tela Soldada",
+    "items": [
+      "Malha POP 3,4 (20x20) 2x3",
+      "Tela VIP 4,2 (20x20) 2x3",
+      "Tela Q61 – 3,4 (15x15) 2x3",
+      "Tela Q92 – 4,2 (15x15) 2x3",
+      "Tela Q92 - 4,2 (15x15) 2.45x6",
+      "Tela Q138 – 4,2 (10x10) 2.45x6",
+      "Tela Q196 – 5,0 (10x10) 2.45x6",
+      "Tela Q283 – 6,0 (10x10) 2.45x6"
+    ]
+  },
+  {
+    "id": "trelica",
+    "name": "Treliça",
+    "items": [
+      "Treliça 6.0 – 6 m",
+      "Treliça 8.0 – 6 m (leve)",
+      "Treliça 8.0 – 6 m",
+      "Treliça 8.0 – 12 m",
+      "Treliça 12.0 – 6 m",
+      "Treliça 12.0 – 12 m",
+      "Treliça 16.0 – 12 m"
+    ]
+  },
+  {
+    "id": "coluna-pronta",
+    "name": "Coluna Pronta",
+    "items": [
+      "Coluna pronta 7x14 5/16 - 6mts",
+      "Coluna pronta 7x17 5/16 - 6mts",
+      "Coluna pronta 7x20 5/16 - 6mts",
+      "Coluna pronta 7x27 5/16 - 6mts"
+    ]
+  },
+  {
+    "id": "rolo",
+    "name": "Rolo",
+    "items": ["Rolo 3,4", "Rolo 4,2", "Rolo 5,0", "Rolo 6,0", "Rolo 8,0"]
+  },
+  {
+    "id": "estribo",
+    "name": "Estribo",
+    "description": "Produzimos mais medidas sob consulta. Bitolas: 4,2 mm e 5,0 mm.",
+    "items": ["Estribo 7x17", "Estribo 7x20", "Estribo 7x27"]
+  },
+  {
+    "id": "pregos",
+    "name": "Pregos",
+    "items": [
+      "Prego 10x10",
+      "Prego 13x15",
+      "Prego 13x6 (galv.)",
+      "Prego 12x12 (forro)",
+      "Prego 14x18",
+      "Prego 15x21",
+      "Prego 16x24 (caixaria)",
+      "Prego 19x30 CD",
+      "Prego 19x36 (caibro)",
+      "Prego 20x42",
+      "Prego 20x48",
+      "Prego 18x36",
+      "Prego 19x39",
+      "Prego 17x27 CD",
+      "Prego 25x72",
+      "Prego 24x60",
+      "Prego 17x27 (ardox)",
+      "Prego 17x27",
+      "Prego 18x30",
+      "Prego 22x54",
+      "Prego 26x84",
+      "Telheiro 18x30 1/2 (10kg)",
+      "Grampos 1x9 (Galv)",
+      "Grampos 13x6 Tela (Galv)"
+    ]
+  },
+  {
+    "id": "malha-tela-mf",
+    "name": "Malha / Tela MF",
+    "items": [
+      "MF 91 - 120 MTS",
+      "MF 113 - 120 MTS",
+      "MF 138 - 120 MTS",
+      "MF 166 - 120 MTS",
+      "MF 196 - 120 MTS"
+    ]
+  },
+  {
+    "id": "btg",
+    "name": "BTG",
+    "items": [
+      "BTG 12,5 - 1/2 - 50cm",
+      "BTG 5/8 16,0 - 5/8 - 50 cm",
+      "BTG 3/4 20 - 3/4 - 50 cm"
+    ]
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "source": "SaveClip.App_AQNVYTvLgClbQ0xyr9lTx2g3UVD_V2Ltbak8U8cvmsxdQktMVD2qaoDwo1kG7OXKuyI-bF25w2-eUrvD6V9dYJtUW8HES0MlDpPDm6E.mp4",
+    "source_sha256": "39cab55c068f28d0cad9ac70e1afc4933f90f971859b2ffebdbc11535947433e",
+    "output": "public/videos/hls-materiais-e-equipe.mp4",
+    "source_bytes": 8312105,
+    "output_bytes": 8312328,
+    "encoded_video_and_audio_unchanged": true
+  },
+  {
+    "source": "SaveClip.App_AQPY8890wHUo9LwOW7q_XbKBgkpGmvvIH9oFnDHDDblvzN6Dl5RJnUHqwJc_vLX20HlsqwTAEWlV2x_KMVGkZFfWW3qlKob5mHaWL_M.mp4",
+    "source_sha256": "9d2e52651b6fdd7c23232f3fd54cf7f7a4699fab69989ad8af2e6a69debb4594",
+    "output": "public/videos/hls-barras-transferencia.mp4",
+    "source_bytes": 3550786,
+    "output_bytes": 3551009,
+    "encoded_video_and_audio_unchanged": true
+  }
+]
