@@ -1,3 +1,5 @@
+import { ScrollStory } from "@/components/sections/ScrollStory";
+import { MaterialGallery } from "@/components/sections/MaterialGallery";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -257,6 +259,8 @@ export default function App() {
           category={category}
           setCategory={setCategory}
         />
+        <MaterialGallery onSelect={setCategory} />
+        <ScrollStory onQuote={openQuote} />
         <section id="sobre" className="about-section">
           <div className="container about-layout">
             <div className="about-image">

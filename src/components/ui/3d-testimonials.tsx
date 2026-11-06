@@ -68,7 +68,6 @@ export function Marquee({
           key={index}
           className="review-marquee-track"
           aria-hidden={decorative || index > 0 ? true : undefined}
-          inert={decorative || index > 0 ? true : undefined}
         >
           {children}
         </div>
@@ -91,7 +90,7 @@ export function Marquee({
       aria-label={decorative ? undefined : ariaLabel}
       aria-live={decorative ? undefined : ariaLive}
       aria-hidden={decorative ? true : undefined}
-      inert={decorative ? true : undefined}
+
       tabIndex={decorative ? undefined : 0}
     >
       {groups}
@@ -158,9 +157,10 @@ export function Testimonials({
     query.addEventListener("change", changed);
     return () => query.removeEventListener("change", changed);
   }, []);
-  const stationary = reduced || mobile;
-  const columns = Array.from({ length: Math.min(3, items.length) }, (_, i) =>
-    items.filter((_, n) => n % Math.min(3, items.length) === i),
+  const stationary = reduced;
+  const columnCount = mobile ? 1 : Math.min(3, items.length);
+  const columns = Array.from({ length: columnCount }, (_, i) =>
+    items.filter((_, n) => n % columnCount === i),
   );
   if (!items.length)
     return (
@@ -214,7 +214,6 @@ export function Testimonials({
             id="review-animation"
             className="review-perspective"
             aria-hidden="true"
-            inert
           >
             <div className="review-columns">
               {columns.map((column, index) => (
@@ -222,7 +221,6 @@ export function Testimonials({
                   key={index}
                   vertical
                   reverse={index % 2 === 1}
-                  pauseOnHover
                   repeat={3}
                   decorative
                 >

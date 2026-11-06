@@ -35,3 +35,23 @@ ffmpeg -ss 1.5 -i original.mp4 -frames:v 1 -vf scale=540:-2 public/images/nome-p
 `docs/video-assets.json` registra nomes originais, SHA-256, bytes e arquivos de destino. As tentativas iniciais de recompressão não trouxeram ganho suficiente; a entrega conserva as faixas originais e usa carregamento por clique para evitar transferências desnecessárias.
 
 `Videos.tsx` mantém os players em 9:16 com object-fit contain, sem autoplay, preload none e sem src até a ação do visitante. Controles nativos e áudio ficam disponíveis após o clique. Iniciar um player pausa o outro; ocultar a aba pausa ambos. Erro de rede exibe uma mensagem e botão de nova tentativa. Há resumos textuais fiéis e legendas já presentes nos próprios vídeos; não foi criado arquivo de transcrição/legendas separado.
+
+## Terceiro vídeo — carga em movimento
+
+Arquivo fornecido posteriormente pelo usuário: `SaveClip.App_AQOejTOvMrNO0wgCxE8bs67yqsxBQibVNK5d4pvF1Hh7CGQkZrAXPcJzN2n3cXVxprZVwR_gb1TFvKuT-99WPJtj3Ihjo0gb1_9WQSw.mp4`. Inspeção visual ao longo do clipe: caminhão com marca HLS, carga de ferragens e texto embutido “Saindo mais uma CARGA”. Fonte 720×1280, H.264/AAC, cerca de 8,31 s e 1,2 MB. Não é um vídeo 4K e não foi apresentado como tal.
+
+- `hls-carga-em-movimento.mp4`: remux faststart, com as faixas codificadas originais preservadas por hash. Terceiro player vertical com áudio por clique, controles e pausa mútua com os demais.
+- `hls-carga-scroll.mp4`: derivação decorativa 540×960, sem áudio, H.264 CRF 24 e keyframes a cada 15 quadros, otimizada para seek em aparelhos móveis. É o mesmo enquadramento vertical, sem esticar nem recortar.
+- `hls-carga-poster.webp`: frame do segundo 5, 720×1280.
+
+A cena `ScrollStory` só carrega o vídeo ao se aproximar da tela; economia de dados exige ação. Com rolagem normal, o vídeo permanece pausado e seu currentTime segue o progresso da cena, avançando e retrocedendo. O botão pausa/retoma esse comportamento; há caminho para o player com áudio. Movimento reduzido mantém poster e conteúdo estático, sem uma seção longa ou sticky obrigatória. Nenhuma trilha sonora começa automaticamente.
+
+## Três fotografias de alta resolução
+
+Páginas Pexels e metadata inspecionados; licença https://www.pexels.com/license/. Fotos ilustrativas, sem atribuição às instalações/estoque da HLS. Autores, URLs e resolução estão em `photography-assets.json`.
+
+- `steel-detail`: barras nervuradas ao sol, Pexels 35598610, Serhii Barkanov; fonte com largura 6000 px.
+- `mesh-roll`: rolo de malha de aço, Pexels 36398139, Willians Huerta; fonte 5826×3884.
+- `coils`: rolos de fio de aço, Pexels 36397790, Willians Huerta; fonte de largura 6000 px.
+
+Entregues masters WebP de largura 3840 px, sem ampliação artificial, mais variantes 480/960/1920. O srcset/sizes considera o recorte visual de object-fit cover para evitar baixa resolução aparente; celulares recebem a variante adequada, não 4K obrigatoriamente. Novas fotos não se repetem nas 73 linhas do catálogo compacto.

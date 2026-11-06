@@ -57,12 +57,13 @@ test("avaliações: fonte datada, notas reais e animação com pausa e leitura e
   await page.mouse.move(0, 0);
   const track = section.locator(".review-marquee-track").first();
   await expect(track).toHaveCSS("animation-play-state", "running");
-  const animationBox = await section
-    .locator(".review-perspective")
+  const reviewBox = await section
+    .locator(".google-review-card")
+    .nth(1)
     .boundingBox();
   await page.mouse.move(
-    animationBox!.x + animationBox!.width / 2,
-    animationBox!.y + animationBox!.height / 2,
+    reviewBox!.x + reviewBox!.width / 2,
+    reviewBox!.y + reviewBox!.height / 2,
   );
   await expect(track).toHaveCSS("animation-play-state", "paused");
   await page.mouse.move(0, 0);
@@ -71,10 +72,9 @@ test("avaliações: fonte datada, notas reais e animação com pausa e leitura e
     "aria-hidden",
     "true",
   );
-  await expect(section.locator(".review-perspective")).toHaveAttribute(
-    "inert",
-    "",
-  );
+  await expect(
+    section.locator(".review-perspective").locator("a,button,input,[tabindex]"),
+  ).toHaveCount(0);
   await section.getByRole("button", { name: "Pausar movimento" }).click();
   await expect(
     section.getByRole("button", { name: "Retomar movimento" }),
@@ -102,8 +102,8 @@ test("avaliações: fonte datada, notas reais e animação com pausa e leitura e
   await expect(section.getByRole("listitem")).toHaveCount(9);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await expect(section.locator(".review-perspective")).toHaveCount(0);
-  await expect(section.getByRole("listitem")).toHaveCount(9);
+  await expect(section.locator(".review-perspective")).toHaveCount(1);
+  await expect(section.locator('[data-slot="marquee"]')).toHaveCount(1);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(
     390,
   );

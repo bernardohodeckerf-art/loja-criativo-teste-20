@@ -4,7 +4,7 @@ Ambiente preparado com Node.js 24.22.1, npm 11.9.0, Chromium do sistema e FFmpeg
 
 ## Testes executados
 
-Suíte Playwright `npm test`: **15 testes passaram**, com um worker, em Chromium. Os cenários cobrem:
+Suíte Playwright `npm test`: **18 testes passaram**, com um worker, em Chromium. Os cenários cobrem:
 
 1. Catálogo com 73 opções, 24 pregos/grampos, busca sem acentos e com vírgula decimal, filtros, estado vazio, foto carregada e inclusão única.
 2. Quantidade inválida/válida, unidade, validação de etapas, retorno preservando respostas, resumo e URL encodeURIComponent para destino fixo. Nenhuma mensagem foi enviada.
@@ -47,3 +47,13 @@ Atualização de 06/11/2026: **15 testes passaram** na suíte completa. Os novos
 Para avaliações, verificados registro datado, seleção de nove comentários, notas de 3 e 4 estrelas preservadas, botão de pausa, camada decorativa inert/aria-hidden, leitura estática acessível, preferência dinâmica de movimento reduzido e apresentação sem animação no mobile. A revisão Axe da página e do diálogo passou. Capturas desktop/mobile do catálogo e das avaliações foram revisadas.
 
 As avaliações foram verificadas nas capturas fornecidas pelo usuário, não em uma integração ativa com a API Google. A nota 4,7 e as 63 avaliações são identificadas como registro de 06/11/2026; não se afirma atualização automática.
+
+## Cena de rolagem, mobile e imagens 4K
+
+A suíte completa após a atualização passou com **18 testes**. Três novos cenários em `tests/scroll-motion.spec.ts` verificam deslocamento real das avaliações em 1440 e 390 px (transform muda), pausa/retomada pelo botão, vídeo que avança e retrocede com a rolagem em ambos os tamanhos, pausa da animação, ausência de overflow, vídeo decorativo muted/paused e preferência de movimento reduzido sem carregamento automático. O terceiro player real foi testado com reprodução e áudio habilitado após ação. A suíte existente validou os três players e a pausa mútua.
+
+Build/TypeScript e Axe passaram. As 12 variantes novas foram verificadas com Pillow, incluindo largura real de 3840 px dos masters. As três fotos e os quadros ao longo do vídeo foram inspecionados visualmente. Capturas desktop/mobile da galeria, cena e avaliações foram revisadas; foram corrigidos espaçamento entre palavras no título móvel e atualização do capítulo ativo após renderizações. Após esses ajustes, os testes de cena e acessibilidade foram repetidos.
+
+A revisão cobre Chromium Linux, viewport móvel e touch emulado. Não se afirma benchmark de 60 fps em todos os aparelhos, validação em Safari/iOS físico ou aumento comprovado de conversão/vendas. O vídeo recebido é 720p; só as novas fontes fotográficas são de resolução superior a 4K.
+
+O teste adicional de toque real emulado inicialmente expôs uma falha intermitente de carregamento antes do primeiro callback de IntersectionObserver. Foi acrescentada uma checagem de proximidade por rAF/scroll para posições restauradas ou links internos em mobile; ela se desliga após confirmar a proximidade. A animação também verifica a geometria visível antes de pintar, em vez de depender exclusivamente de um callback anterior do observer. Após a correção, os quatro testes de movimento passaram, incluindo o gesto CDP: rolagem vertical real e avanço do vídeo sem prender a página. São 19 cenários distintos validados no total (suíte de 18 mais o cenário de toque; o conjunto de movimento foi reexecutado após a correção).

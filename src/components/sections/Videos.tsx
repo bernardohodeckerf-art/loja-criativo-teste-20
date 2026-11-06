@@ -25,7 +25,7 @@ function VideoCard({
   }, [activated]);
 
   return (
-    <article>
+    <article id={`video-${video.id}`}>
       <div className="vertical-player">
         <video
           ref={(node) => {

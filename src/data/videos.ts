@@ -23,4 +23,12 @@ export const hlsVideos: HlsVideo[] = [
     summary:
       "Conheça a rotina da equipe, as telas e os rolos de aço, em um passeio pelos materiais e pela fachada da HLS.",
   },
+  {
+    id: "carga",
+    src: "/videos/hls-carga-em-movimento.mp4",
+    poster: "/images/hls-carga-poster.webp",
+    title: "Uma carga da HLS em movimento",
+    summary:
+      "O caminhão da HLS e sua carga de ferragens, em um registro enviado pela empresa.",
+  },
 ];

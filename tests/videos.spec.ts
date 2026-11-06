@@ -5,13 +5,17 @@ test("vídeos HLS: posters sem download automático, áudio e pausa mútua", asy
 }) => {
   const requests: string[] = [];
   page.on("request", (request) => {
-    if (request.url().includes("/videos/hls-")) requests.push(request.url());
+    if (
+      request.url().includes("/videos/hls-") &&
+      !request.url().includes("hls-carga-scroll")
+    )
+      requests.push(request.url());
   });
   await page.goto("/");
   const section = page.locator("#videos");
   await section.scrollIntoViewIfNeeded();
   const videos = section.locator("video");
-  await expect(videos).toHaveCount(2);
+  await expect(videos).toHaveCount(3);
   for (const player of await videos.all()) {
     await expect(player).not.toHaveAttribute("src");
     await expect(player).toHaveAttribute("preload", "none");

@@ -14,5 +14,14 @@
     "source_bytes": 3550786,
     "output_bytes": 3551009,
     "encoded_video_and_audio_unchanged": true
+  },
+  {
+    "source": "SaveClip.App_AQOejTOvMrNO0wgCxE8bs67yqsxBQibVNK5d4pvF1Hh7CGQkZrAXPcJzN2n3cXVxprZVwR_gb1TFvKuT-99WPJtj3Ihjo0gb1_9WQSw.mp4",
+    "source_sha256": "76a9bafa18db1d495a6cdc5cd2ffbf4d77f8063d4ba5507d34911567965db35a",
+    "output": "public/videos/hls-carga-em-movimento.mp4",
+    "source_bytes": 1199447,
+    "output_bytes": 1199686,
+    "scroll_derivative": "public/videos/hls-carga-scroll.mp4",
+    "encoded_video_and_audio_unchanged": true
   }
 ]

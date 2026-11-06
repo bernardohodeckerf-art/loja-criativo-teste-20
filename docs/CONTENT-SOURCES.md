@@ -62,3 +62,11 @@ Selecionadas apenas entradas com autoria e texto inteiros legíveis: felipe gabr
 Não foi fornecido um link compartilhável individual de cada avaliação. O botão “Consultar no Google” abre uma busca de Maps pelo nome/endereço; não se apresenta como link direto a uma avaliação específica. Não se publicou AggregateRating em dados estruturados.
 
 A tentativa de adicionar a CA oficial do ambiente ao armazenamento NSS do Chromium foi rejeitada pela revisão automática por exigir alteração de confiança persistente. Nenhuma alteração de certificados foi efetuada, a verificação TLS não foi desativada e a fonte utilizada para as avaliações foi o material enviado pelo usuário. As requisições HTTPS de texto continuaram com a verificação normal ativa.
+
+## Nova direção de movimento e fotos
+
+O usuário identificou o material de referência como antigo. O texto Code Makers/Breu foi tratado como direção visual opcional: aplicada a ideia de profundidade, narrativa de rolagem e luz fria à identidade industrial HLS, sem copiar jardim, perfumes, marca fictícia, preços ou arquivos ausentes. Preservada a stack React/TypeScript/Tailwind. Os prints antigos de representantes não foram usados para publicar telefones/nomes como contatos comerciais vigentes.
+
+O terceiro vídeo recebido mostra a carga/caminhão HLS. Sua aplicação está descrita em MEDIA.md; o clipe é 720p, não 4K. Três novas fotos Pexels com fontes de mais de 3840 px foram baixadas/inspecionadas, com atribuições e licença em MEDIA.md e photography-assets.json. Não se adicionaram promessas de entrega, estoque ou preços a partir dessas cenas.
+
+O site oficial /produtos foi consultado novamente como referência do catálogo existente; suas medidas continuam preservadas. As avaliações e o total/nota continuam sendo o registro das capturas de 06/11/2026, sem alegação de sincronização automática.
