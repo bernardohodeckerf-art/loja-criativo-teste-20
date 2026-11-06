@@ -407,7 +407,11 @@ export default function App() {
             </div>
           </div>
         </section>
-        <section className="reviews-section container">
+        <section
+          id="avaliacoes"
+          className="reviews-section container"
+          aria-label="Avaliações de clientes"
+        >
           <p className="eyebrow">CONFIANÇA SE CONSTRÓI TODOS OS DIAS</p>
           <Testimonials />
         </section>

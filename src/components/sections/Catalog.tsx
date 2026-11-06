@@ -123,66 +123,85 @@ export function Catalog({
           Minha lista ({items.length}) <ArrowUpRight size={16} />
         </button>
       </div>
-      <div className="product-grid">
-        {results.map((p) => {
-          const selected = items.some((i) => i.id === p.id);
+      <div className="catalog-groups">
+        {categories.map((group) => {
+          const products = results.filter((p) => p.categoryId === group.id);
+          if (!products.length) return null;
+          const photo = photos[group.id];
           return (
-            <article className="product-card" key={p.id}>
-              {photos[p.categoryId] && !p.name.startsWith("Grampos") && (
-                <div className="product-photo">
-                  <img
-                    className="product-image"
-                    src={`/images/${photos[p.categoryId].file}-small.webp`}
-                    srcSet={`/images/${photos[p.categoryId].file}-small.webp 480w, /images/${photos[p.categoryId].file}.webp 1000w`}
-                    sizes="(max-width: 760px) 45vw, 30vw"
-                    width="480"
-                    height="320"
-                    loading="lazy"
-                    alt={`${photos[p.categoryId].alt}, fotografia ilustrativa da categoria`}
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                    }}
-                  />
-                  <span>IMAGEM ILUSTRATIVA</span>
+            <section
+              className="catalog-group"
+              key={group.id}
+              aria-labelledby={`category-${group.id}`}
+            >
+              <header className="category-heading">
+                {photo && (
+                  <figure className="category-photo">
+                    <img
+                      src={`/images/${photo.file}-small.webp`}
+                      width="104"
+                      height="70"
+                      loading="lazy"
+                      alt={`${photo.alt}, fotografia ilustrativa da categoria`}
+                      onError={(e) => {
+                        e.currentTarget.hidden = true;
+                      }}
+                    />
+                    <figcaption>Imagem ilustrativa</figcaption>
+                  </figure>
+                )}
+                <div>
+                  <h3 id={`category-${group.id}`}>{group.name}</h3>
+                  <p>
+                    {products.length}{" "}
+                    {products.length === 1 ? "opção" : "opções"} · Preço sob
+                    consulta
+                  </p>
+                  {group.description && <p>{group.description}</p>}
                 </div>
-              )}
-              <p className="eyebrow">{p.category}</p>
-              <h3>{p.name}</h3>
-              <p className="product-price">Preço sob consulta</p>
-              <details>
-                <summary>Ver especificações</summary>
-                <p>
-                  Medida do catálogo: {p.name}.{" "}
-                  {p.description ||
-                    "Confirme quantidade, aplicação e disponibilidade com a equipe."}
-                </p>
-              </details>
-              <div className="product-actions">
-                <button
-                  className={`add-product ${selected ? "added" : ""}`}
-                  onClick={() => add(p)}
-                  aria-label={
-                    selected
-                      ? `Na sua lista: ${p.name}`
-                      : `Adicionar à lista: ${p.name}`
-                  }
-                  disabled={selected}
-                >
-                  {selected ? <Check size={16} /> : <Plus size={16} />}{" "}
-                  {selected ? "Na sua lista" : "Adicionar à lista"}
-                </button>
-                <button
-                  className="icon-button"
-                  aria-label={`Consultar ${p.name}`}
-                  onClick={() => {
-                    add(p);
-                    onQuote();
-                  }}
-                >
-                  <ArrowUpRight size={19} />
-                </button>
+              </header>
+              <div className="product-grid">
+                {products.map((p) => {
+                  const selected = items.some((i) => i.id === p.id);
+                  return (
+                    <article
+                      className={`product-card ${selected ? "is-selected" : ""}`}
+                      key={p.id}
+                    >
+                      <h4>{p.name}</h4>
+                      <div className="product-actions">
+                        <button
+                          className={`add-product ${selected ? "added" : ""}`}
+                          onClick={() => add(p)}
+                          aria-label={
+                            selected
+                              ? `Na sua lista: ${p.name}`
+                              : `Adicionar à lista: ${p.name}`
+                          }
+                          disabled={selected}
+                        >
+                          {selected ? <Check size={17} /> : <Plus size={17} />}
+                        </button>
+                        <button
+                          className="icon-button"
+                          aria-label={`Consultar ${p.name}`}
+                          onClick={() => {
+                            add(p);
+                            onQuote();
+                          }}
+                        >
+                          <ArrowUpRight size={17} />
+                        </button>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
-            </article>
+              <p className="category-note">
+                Confirme aplicação, disponibilidade e outras medidas com a
+                equipe.
+              </p>
+            </section>
           );
         })}
       </div>

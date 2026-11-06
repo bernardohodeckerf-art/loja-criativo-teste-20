@@ -36,7 +36,7 @@ Vídeo da hero: https://www.pexels.com/video/professional-welding-steel-6046358/
 
 https://www.instagram.com/hlsferragens/ respondeu com a página do perfil; não se extraíram informações privadas nem se autenticou a conta. Não se usaram dados de curtidas, seguidores ou supostos depoimentos.
 
-https://www.planetabrasileiro.com/blumenau/ferragens retornou HTTP 403. Não foram obtidos depoimentos individuais verificáveis. A interface oferece link para consultar avaliações públicas, sem notas, estrelas, nomes fictícios ou citações inventadas. `3d-testimonials.tsx` aceita conteúdo verificado futuro.
+https://www.planetabrasileiro.com/blumenau/ferragens retornou HTTP 403. A consulta automática não forneceu depoimentos verificáveis. Posteriormente o usuário enviou cinco capturas do painel de avaliações do Google da HLS, com nome e endereço correspondentes ao site oficial. Foram transcritas nove entradas com autor, texto e estrelas legíveis. A interface agora apresenta essa seleção e o registro da nota 4,7 / 63 avaliações, datado do recebimento das capturas (06/11/2026); não há sincronização em tempo real.
 
 ## Atualização dos vídeos
 
@@ -52,3 +52,13 @@ Os dois vídeos próprios estão disponíveis na seção “A HLS na prática”
 - Dias, intervalos e horários completos não foram comprovados. Interface: “Consulte os horários pelo WhatsApp”. Sem indicador de aberto/fechado.
 - As referências originais `3d-testimonials.tsx` e `liquid-glass.tsx` e a imagem da construtora citadas no briefing não foram anexadas; foram implementados componentes próprios com esses nomes. O coverflow original efetivamente recebido foi integrado e adaptado.
 - Definir URL final, revisão da empresa sobre textos, usos de marca e imagens, atualização de patrocínio após temporada 2026 e eventual imagem Open Graph oficial.
+
+## Avaliações Google — fonte fornecida pelo usuário
+
+As cinco capturas enviadas nesta conversa mostram o painel HLS Ferragens, Rua Johann G. H. Hadlich, 1852, Passo Manso, Blumenau–SC, 89032-400. A nota 4,7 e o total de 63 avaliações são um registro das capturas, não uma consulta atualizada por API. Autores/textos/estrelas transcritos estão centralizados em `src/data/reviews.ts`. Não foram calculadas datas exatas a partir de “há X anos”, nem usados os avatares pequenos/ilegíveis ou fotos de banco. Os avatares exibem apenas iniciais dos nomes.
+
+Selecionadas apenas entradas com autoria e texto inteiros legíveis: felipe gabriel mantovani sardagna (5), The Rookie Driver (5), Marcus Vinícius Pitz (5), Rodnei Alves (5), Guilherme (5), programming tools (5), Sidnei Oliveira Da Rosa (3), Cleiso Porto (4) e Rogerio Bernardi (5). Textos sem autoria visível, cartões cortados e entradas sem comentário foram omitidos. O teor favorável dos comentários de 3/4 estrelas não foi usado para alterar suas notas. As afirmações nos comentários são dos autores e não se transformam em promessas comerciais da HLS.
+
+Não foi fornecido um link compartilhável individual de cada avaliação. O botão “Consultar no Google” abre uma busca de Maps pelo nome/endereço; não se apresenta como link direto a uma avaliação específica. Não se publicou AggregateRating em dados estruturados.
+
+A tentativa de adicionar a CA oficial do ambiente ao armazenamento NSS do Chromium foi rejeitada pela revisão automática por exigir alteração de confiança persistente. Nenhuma alteração de certificados foi efetuada, a verificação TLS não foi desativada e a fonte utilizada para as avaliações foi o material enviado pelo usuário. As requisições HTTPS de texto continuaram com a verificação normal ativa.

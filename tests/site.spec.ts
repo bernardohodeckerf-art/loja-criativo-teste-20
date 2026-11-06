@@ -10,7 +10,7 @@ test("catálogo: categorias, medidas, busca sem acentos, estado vazio e lista", 
   await expect(page.locator(".product-card")).toHaveCount(73);
   await filter.selectOption("pregos");
   await expect(page.locator(".product-card")).toHaveCount(24);
-  const photo = page.locator(".product-card").first().locator("img");
+  const photo = page.locator(".category-photo img");
   await photo.scrollIntoViewIfNeeded();
   await expect
     .poll(() => photo.evaluate((i) => (i as HTMLImageElement).naturalWidth))

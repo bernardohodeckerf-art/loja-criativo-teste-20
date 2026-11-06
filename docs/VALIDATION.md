@@ -4,7 +4,7 @@ Ambiente preparado com Node.js 24.22.1, npm 11.9.0, Chromium do sistema e FFmpeg
 
 ## Testes executados
 
-Suíte Playwright `npm test`: **13 testes passaram**, com um worker, em Chromium. Os cenários cobrem:
+Suíte Playwright `npm test`: **15 testes passaram**, com um worker, em Chromium. Os cenários cobrem:
 
 1. Catálogo com 73 opções, 24 pregos/grampos, busca sem acentos e com vírgula decimal, filtros, estado vazio, foto carregada e inclusão única.
 2. Quantidade inválida/válida, unidade, validação de etapas, retorno preservando respostas, resumo e URL encodeURIComponent para destino fixo. Nenhuma mensagem foi enviada.
@@ -39,3 +39,11 @@ A suíte completa foi executada novamente com os vídeos reais: **13 testes pass
 Uma execução intermediária teve timeout no teste existente do questionário enquanto também eram produzidas capturas. O teste passou isoladamente com trace e depois na suíte completa, sem alterar suas asserções. Não foi identificada uma falha funcional reproduzível no questionário.
 
 As faixas codificadas de áudio e vídeo dos arquivos entregues são idênticas às originais, verificadas por hash após remux para faststart. Não houve recorte, recompressão, mudança de resolução ou remoção das legendas embutidas. O start_skill salvo foi atualizado para retirar a antiga pendência dos vídeos; a publicação do ambiente atualizado continua a cargo do usuário nas configurações.
+
+## Catálogo compacto e avaliações Google
+
+Atualização de 06/11/2026: **15 testes passaram** na suíte completa. Os novos testes em `tests/reviews-catalog.spec.ts` percorrem as dez categorias, confirmam 73 medidas, no máximo uma foto ilustrativa por categoria (cinco imagens no total), nenhuma foto repetida dentro dos itens e linhas de até 90 px no desktop. Os 24 pregos/grampos cabem em um único grupo de aproximadamente 688 px de altura no viewport 1440×1000, em vez de cards grandes com imagem repetida. A seleção e a consulta de Estribo 7x17 também foram verificadas.
+
+Para avaliações, verificados registro datado, seleção de nove comentários, notas de 3 e 4 estrelas preservadas, botão de pausa, camada decorativa inert/aria-hidden, leitura estática acessível, preferência dinâmica de movimento reduzido e apresentação sem animação no mobile. A revisão Axe da página e do diálogo passou. Capturas desktop/mobile do catálogo e das avaliações foram revisadas.
+
+As avaliações foram verificadas nas capturas fornecidas pelo usuário, não em uma integração ativa com a API Google. A nota 4,7 e as 63 avaliações são identificadas como registro de 06/11/2026; não se afirma atualização automática.
