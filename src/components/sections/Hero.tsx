@@ -108,9 +108,14 @@ export function Hero({ onQuote }: { onQuote: () => void }) {
           <span className="tiny-square" /> FERRAGENS · BLUMENAU E REGIÃO
         </p>
         <h1>
-          A força
-          <br />
-          da sua <em>obra.</em>
+          <span className="hero-line-mask">
+            <span>A força</span>
+          </span>
+          <span className="hero-line-mask">
+            <span>
+              da sua <em>obra.</em>
+            </span>
+          </span>
         </h1>
         <p className="hero-sub">Começa com o material certo.</p>
         <MagneticButton className="primary" onClick={onQuote}>

@@ -1,0 +1,409 @@
+/* Native-scroll material chapters. All copies/links remain readable; emphasis is decorative. */
+.material-gallery.material-experience {
+  --material-progress: 0;
+  padding-block: 70px 45px;
+  overflow: visible;
+}
+.material-experience .section-heading {
+  margin-bottom: 28px;
+}
+.material-experience .material-experience-scroll {
+  height: 165svh;
+  min-height: 1050px;
+  position: relative;
+}
+.material-experience .material-experience-stage {
+  position: sticky;
+  top: calc(96px + 12px);
+  padding-block: 18px 22px;
+  min-height: 540px;
+  height: calc(100svh - 120px);
+  max-height: 880px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: visible;
+}
+.material-experience .material-scene-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 14px;
+}
+.material-experience .material-current-caption {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  min-width: 0;
+}
+.material-experience .material-current-caption > span {
+  font: 10px monospace;
+  color: #47717a;
+  letter-spacing: 1px;
+}
+.material-experience .material-current-caption strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+.material-experience .material-static-toggle {
+  font-size: 11px;
+  min-height: 44px;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.material-experience .material-stage-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.material-experience .material-stage-controls button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  min-width: 104px;
+  padding: 10px 15px;
+  border: 1px solid #bdced0;
+  background: #eff3f0;
+  font-size: 12px;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+.material-experience .material-stage-controls button > span {
+  font: 9px monospace;
+  opacity: 0.8;
+}
+.material-experience .material-stage-controls button[aria-current="step"] {
+  background: #143d49;
+  border-color: #143d49;
+  color: #fff;
+}
+.material-experience .material-photo-rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  overflow: visible;
+  padding: 0;
+  scroll-snap-type: none;
+  flex: none;
+  outline-offset: 7px;
+}
+.material-experience .material-photo {
+  --material-strength: 1;
+  --material-parallax: 0px;
+  --material-reveal: 0%;
+  display: block;
+  flex: none;
+  min-width: 0;
+  min-height: 0;
+  background: #f5f7f4;
+  color: var(--ink);
+  border: 1px solid #c7d5d4;
+  overflow: hidden;
+  isolation: isolate;
+  transform: translate3d(0, calc((1 - var(--material-strength)) * 12px), 0)
+    scale(calc(0.96 + var(--material-strength) * 0.04));
+  transform-origin: center;
+  box-shadow: 0 8px 22px #143e490b;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+.material-experience .material-photo[data-active="true"] {
+  border-color: #3b929d;
+  box-shadow: 0 14px 32px #173b4614;
+}
+.material-experience .material-photo:after {
+  display: none;
+}
+.material-experience .material-photo-window {
+  position: relative;
+  height: clamp(190px, 28svh, 330px);
+  overflow: hidden;
+  background: #153b45;
+  clip-path: inset(0 0 var(--material-reveal) 0);
+}
+.material-experience .material-photo-window:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: #133440;
+  opacity: calc((1 - var(--material-strength)) * 0.38);
+}
+.material-experience .material-photo img {
+  position: absolute;
+  inset: -8% 0;
+  width: 100%;
+  height: 116%;
+  object-fit: cover;
+  transform: translate3d(0, var(--material-parallax), 0)
+    scale(calc(1.12 - var(--material-strength) * 0.08));
+  filter: saturate(calc(0.3 + var(--material-strength) * 0.7));
+  will-change: transform;
+}
+.material-experience .material-photo-number {
+  top: 15px;
+  left: 15px;
+  z-index: 1;
+  color: #fff;
+  font: 10px monospace;
+  letter-spacing: 1px;
+  background: #10323ccc;
+  padding: 7px 9px;
+}
+.material-experience .material-photo-caption {
+  position: relative;
+  inset: auto;
+  padding: 22px;
+  min-height: 200px;
+  z-index: 1;
+}
+.material-experience .material-photo-caption > span:first-child {
+  font: 9px monospace;
+  letter-spacing: 1px;
+  color: #456b76;
+  text-transform: uppercase;
+}
+.material-experience .material-photo-caption h3 {
+  font-size: 25px;
+  line-height: 1.12;
+  letter-spacing: -0.7px;
+  max-width: none;
+  margin: 13px 0;
+}
+.material-experience .material-photo-caption p {
+  font-size: 12px;
+  line-height: 1.75;
+  color: #536b72;
+  margin: 0;
+  max-width: 320px;
+}
+.material-experience .material-category-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  min-height: 44px;
+  margin-top: 13px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #1c6470;
+}
+.material-experience .material-category-link svg {
+  position: static;
+  flex-shrink: 0;
+}
+.material-experience .material-scene-progress {
+  height: 2px;
+  background: #d2dddd;
+  margin-top: 25px;
+  overflow: hidden;
+}
+.material-experience .material-scene-progress i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #268b98;
+  transform: scaleX(var(--material-progress));
+  transform-origin: left;
+}
+.material-experience .material-gallery-footer {
+  margin-top: 15px;
+  gap: 20px;
+  align-items: flex-start;
+}
+.material-experience .material-gallery-footer > span {
+  font: 8px/1.8 monospace;
+  color: #526d75;
+  letter-spacing: 0.7px;
+  max-width: none;
+}
+.material-experience .material-scroll-hint {
+  text-align: right;
+}
+.material-experience.is-static .material-experience-scroll {
+  height: auto;
+  min-height: 0;
+}
+.material-experience.is-static .material-experience-stage {
+  position: relative;
+  top: auto;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+}
+.material-experience.is-static .material-photo,
+.material-experience.is-static .material-photo img {
+  transform: none;
+  filter: none;
+  will-change: auto;
+}
+.material-experience.is-static .material-photo-window {
+  clip-path: none;
+}
+.material-experience.is-static .material-photo-window:after,
+.material-experience.is-static .material-scene-progress {
+  display: none;
+}
+.material-experience .material-photo:focus-visible {
+  outline: 3px solid #158a98;
+  outline-offset: 5px;
+}
+@media (max-width: 1100px) {
+  .material-experience .material-photo-rail {
+    gap: 16px;
+  }
+  .material-experience .material-photo-caption {
+    padding: 18px;
+  }
+  .material-experience .material-photo-caption h3 {
+    font-size: 22px;
+  }
+  .material-experience .material-photo-caption p {
+    font-size: 11px;
+  }
+}
+@media (max-width: 900px) {
+  .material-gallery.material-experience {
+    padding-block: 55px 35px;
+  }
+  .material-experience .material-experience-scroll {
+    height: auto;
+    min-height: 0;
+  }
+  .material-experience .material-experience-stage {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding-block: 0;
+  }
+  .material-experience .material-photo-rail {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .material-experience .material-photo {
+    transform: translate3d(0, calc((1 - var(--material-strength)) * 9px), 0);
+    max-width: 660px;
+    width: 100%;
+    margin: auto;
+  }
+  .material-experience .material-photo-window {
+    height: clamp(235px, 48svh, 430px);
+  }
+  .material-experience .material-photo-caption {
+    padding: 23px;
+    min-height: 0;
+  }
+  .material-experience .material-photo-caption h3 {
+    font-size: 28px;
+  }
+  .material-experience .material-photo-caption p {
+    font-size: 13px;
+    max-width: 540px;
+  }
+  .material-experience .material-photo-caption > span:first-child {
+    font-size: 10px;
+  }
+  .material-experience .material-current-caption {
+    gap: 12px;
+  }
+  .material-experience .material-current-caption strong {
+    font-size: 14px;
+  }
+  .material-experience .material-static-toggle {
+    font-size: 10px;
+    gap: 6px;
+  }
+  .material-experience .material-stage-controls {
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .material-experience .material-stage-controls button {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    font-size: 11px;
+    gap: 8px;
+    justify-content: center;
+  }
+  .material-experience .material-gallery-footer {
+    display: block;
+  }
+  .material-experience .material-gallery-footer > span {
+    font-size: 9px;
+    display: block;
+  }
+  .material-experience .material-scroll-hint {
+    text-align: left;
+    margin-top: 8px;
+  }
+  .material-experience .material-scene-toolbar {
+    gap: 12px;
+  }
+  .material-experience .material-current-caption > span {
+    font-size: 9px;
+    white-space: nowrap;
+  }
+  .material-experience .material-category-link {
+    font-size: 12px;
+  }
+}
+@media (max-height: 650px) {
+  .material-experience .material-experience-scroll {
+    height: auto;
+    min-height: 0;
+  }
+  .material-experience .material-experience-stage {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+  .material-experience .material-photo-window {
+    height: 240px;
+  }
+}
+@media (max-width: 360px) {
+  .material-experience .material-current-caption {
+    display: block;
+  }
+  .material-experience .material-current-caption strong {
+    display: block;
+    margin-top: 6px;
+  }
+  .material-experience .material-photo-caption {
+    padding: 20px;
+  }
+  .material-experience .material-photo-caption h3 {
+    font-size: 26px;
+  }
+  .material-experience .material-stage-controls button {
+    padding-inline: 8px;
+    font-size: 10px;
+  }
+  .material-experience .material-photo-window {
+    height: 230px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .material-experience .material-photo,
+  .material-experience .material-photo img {
+    transform: none !important;
+    filter: none;
+    will-change: auto;
+  }
+  .material-experience .material-photo-window {
+    clip-path: none;
+  }
+  .material-experience .material-photo-window:after {
+    display: none;
+  }
+}

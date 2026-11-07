@@ -83,8 +83,15 @@ export function ScrollStory({ onQuote }: { onQuote: () => void }) {
       if (document.hidden || reduced || paused) return;
       const rect = el.getBoundingClientRect();
       if (rect.bottom < -100 || rect.top > innerHeight + 100) return;
-      const top = parseFloat(getComputedStyle(sticky).top) || 0;
-      const travel = Math.max(1, el.offsetHeight - sticky.offsetHeight);
+      const position = getComputedStyle(sticky);
+      const pinned = position.position === "sticky";
+      const top = pinned ? parseFloat(position.top) || 0 : innerHeight * 0.3;
+      const travel = Math.max(
+        1,
+        pinned
+          ? el.offsetHeight - sticky.offsetHeight
+          : el.offsetHeight - innerHeight * 0.4,
+      );
       const progress = Math.min(1, Math.max(0, (top - rect.top) / travel));
       el.style.setProperty("--story-progress", String(progress));
       el.dataset.scrollProgress = progress.toFixed(3);

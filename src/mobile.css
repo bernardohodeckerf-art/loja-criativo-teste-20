@@ -1,0 +1,516 @@
+/* Touch layouts: keep the desktop composition while adapting the whole flow. */
+@media (max-width: 900px) {
+  :root {
+    --mobile-header-height: 78px;
+    --mobile-gutter: max(
+      clamp(15px, 5vw, 28px),
+      env(safe-area-inset-left),
+      env(safe-area-inset-right)
+    );
+  }
+
+  html {
+    scroll-padding-top: calc(
+      var(--mobile-header-height) + env(safe-area-inset-top) + 12px
+    );
+  }
+
+  .container {
+    width: calc(100% - var(--mobile-gutter) * 2);
+  }
+
+  .site-header {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .header-inner {
+    height: var(--mobile-header-height);
+    gap: 14px;
+  }
+
+  .brand {
+    width: 56px;
+    height: 56px;
+  }
+
+  .header-quote,
+  .menu-toggle,
+  .main-nav a,
+  .video-toggle,
+  .scroll-hint,
+  .text-link,
+  .faq-list summary,
+  .reviews-reading-view > summary,
+  .contact-grid a,
+  .intro-strip > a {
+    min-height: 44px;
+  }
+
+  .menu-toggle,
+  .icon-button,
+  .intro-strip > a {
+    min-width: 44px;
+  }
+
+  .intro-strip > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-nav {
+    gap: 16px;
+  }
+
+  .main-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+  }
+
+  .catalog-section .add-product,
+  .catalog-section .product-actions .icon-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .catalog-section .product-card h4,
+  .category-heading > div,
+  .section-heading > *,
+  .contact-grid > div,
+  .team-info > div {
+    min-width: 0;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea,
+  .search-field input,
+  .select-field select,
+  .field input,
+  .field select,
+  .field textarea,
+  .interest-item input,
+  .interest-item select {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]),
+  select {
+    min-height: 48px;
+  }
+
+  textarea {
+    min-height: 88px;
+  }
+
+  .search-field,
+  .select-field {
+    min-width: 0;
+  }
+
+  .search-field input,
+  .select-field select {
+    min-width: 0;
+  }
+
+  .faq-list summary {
+    gap: 18px;
+    line-height: 1.6;
+  }
+
+  .faq-list summary svg {
+    flex-shrink: 0;
+  }
+
+  .contact-grid a {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-grid .phone {
+    display: flex;
+  }
+
+  .footer-inner {
+    padding-bottom: calc(90px + env(safe-area-inset-bottom));
+  }
+
+  .whatsapp-float {
+    right: max(18px, env(safe-area-inset-right));
+    bottom: calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .interest-float {
+    right: max(79px, calc(env(safe-area-inset-right) + 61px));
+    bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .story-stage {
+    top: calc(var(--mobile-header-height) + env(safe-area-inset-top));
+    height: calc(
+      100svh - var(--mobile-header-height) - env(safe-area-inset-top)
+    );
+  }
+
+  .story-film-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .story-film-controls .text-link {
+    min-width: 0;
+    min-height: 44px;
+    font-size: 10px;
+    line-height: 1.45;
+    gap: 6px;
+  }
+
+  .story-film-controls svg {
+    flex-shrink: 0;
+  }
+
+  .story-status {
+    overflow-wrap: anywhere;
+  }
+
+  .is-reduced .story-stage {
+    top: auto;
+    height: auto;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1000px) {
+  .about-layout {
+    gap: 36px;
+  }
+
+  .hls-video-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    max-width: 720px;
+  }
+
+  .hls-video-grid > article:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: min(100%, 346px);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 760px) {
+  .header-inner {
+    gap: 10px;
+  }
+
+  .header-quote {
+    padding: 10px 12px;
+    gap: 9px;
+    flex-shrink: 0;
+  }
+
+  .header-inner > a,
+  .menu-toggle {
+    flex-shrink: 0;
+  }
+
+  .main-nav {
+    top: calc(var(--mobile-header-height) + env(safe-area-inset-top));
+    max-height: calc(
+      100dvh - var(--mobile-header-height) - env(safe-area-inset-top)
+    );
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+
+  .main-nav a {
+    justify-content: flex-start;
+  }
+
+  .hero-bottom {
+    bottom: calc(24px + env(safe-area-inset-bottom));
+    gap: 12px;
+  }
+
+  .hero-bottom .video-toggle {
+    font-size: 10px;
+    padding-inline: 12px;
+  }
+
+  .hero-bottom .scroll-hint {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .showcase-footer > span,
+  .material-gallery-footer > span {
+    font-size: 9px;
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+  }
+
+  .category-heading p,
+  .category-note,
+  .category-photo figcaption {
+    line-height: 1.7;
+  }
+
+  .category-photo figcaption {
+    font-size: 8px;
+  }
+
+  .catalog-meta {
+    gap: 16px;
+  }
+
+  .catalog-meta .text-link {
+    flex-shrink: 0;
+  }
+
+  .catalog-section .product-card {
+    gap: 7px;
+  }
+
+  .catalog-section .product-actions {
+    gap: 2px;
+  }
+
+  .story-film-frame {
+    height: clamp(250px, 38svh, 350px);
+  }
+
+  .story-chapter h3 {
+    font-size: 11px;
+    line-height: 1.55;
+  }
+
+  .hls-video-grid {
+    width: 100%;
+    grid-template-columns: minmax(0, 360px);
+  }
+
+  .hls-video-grid article,
+  .vertical-player,
+  .vertical-player video {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .team-info h3 {
+    line-height: 1.4;
+  }
+
+  .team-info > img {
+    flex-shrink: 0;
+  }
+
+  .reviews-source > p {
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  .google-score > small {
+    font-size: 10px;
+    line-height: 1.7;
+  }
+
+  .review-motion-controls {
+    gap: 12px;
+  }
+
+  .review-motion-controls > span {
+    line-height: 1.7;
+  }
+
+  .contact-grid address,
+  .contact-grid p {
+    line-height: 1.9;
+  }
+
+  .footer-inner > .text-link {
+    font-size: 11px;
+  }
+}
+
+/* Short viewports keep every chapter and control in normal page flow. */
+@media (max-width: 1000px) and (max-height: 550px) {
+  :root {
+    --mobile-header-height: 64px;
+  }
+
+  .header-inner {
+    height: 64px;
+  }
+
+  .brand {
+    width: 46px;
+    height: 46px;
+  }
+
+  .hero {
+    min-height: 570px;
+    height: auto;
+    max-height: none;
+  }
+
+  .hero-content {
+    padding-top: 125px;
+    padding-bottom: 135px;
+  }
+
+  .hero h1 {
+    font-size: clamp(54px, 8.5vw, 76px);
+    letter-spacing: -3px;
+  }
+
+  .hero-sub {
+    margin-block: 22px;
+    font-size: 15px;
+  }
+
+  .hero-bottom {
+    bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .scroll-story,
+  .scroll-story.is-reduced {
+    height: auto;
+    min-height: 0;
+    padding-block: 32px;
+  }
+
+  .story-stage,
+  .is-reduced .story-stage {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .story-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(130px, 180px);
+    align-items: start;
+    gap: 30px;
+    padding-block: 15px;
+  }
+
+  .story-copy .eyebrow {
+    font-size: 9px;
+    margin-bottom: 16px;
+  }
+
+  .story-copy h2 {
+    font-size: 36px;
+    letter-spacing: -1.4px;
+  }
+
+  .story-intro {
+    display: block;
+    font-size: 12px;
+    margin-top: 18px;
+  }
+
+  .story-chapters,
+  .is-reduced .story-chapters {
+    display: block;
+    margin-block: 20px;
+  }
+
+  .story-chapters:before,
+  .story-chapter:before {
+    display: none;
+  }
+
+  .story-chapter {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  .story-chapter > span {
+    padding-top: 2px;
+  }
+
+  .story-chapter h3 {
+    font-size: 12px;
+    margin-top: 0;
+  }
+
+  .story-chapter p {
+    display: block;
+    font-size: 11px;
+    max-width: 400px;
+  }
+
+  .story-copy .button {
+    display: inline-flex;
+    min-height: 44px;
+    font-size: 11px;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .story-film {
+    width: 100%;
+    max-width: 180px;
+    margin: 0;
+  }
+
+  .story-film-frame,
+  .is-reduced .story-film-frame {
+    height: auto;
+    width: 100%;
+  }
+
+  .story-film-controls .text-link {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header-inner {
+    gap: 8px;
+  }
+
+  .header-quote {
+    font-size: 9px;
+    padding-inline: 10px;
+    gap: 8px;
+  }
+
+  .hero h1 {
+    font-size: clamp(56px, 18vw, 64px);
+  }
+
+  .showcase-footer {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .showcase-footer > span {
+    max-width: 115px;
+  }
+
+  .showcase-footer .text-link {
+    font-size: 10px;
+    gap: 6px;
+  }
+
+  .team-info > span {
+    font-size: 7px;
+    letter-spacing: 0.4px;
+  }
+
+  .reviews-source > a {
+    font-size: 11px;
+  }
+}

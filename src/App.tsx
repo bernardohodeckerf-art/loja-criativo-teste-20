@@ -1,3 +1,5 @@
+import { BrandIntro } from "@/components/ui/brand-intro";
+import { QuoteCTA } from "@/components/sections/QuoteCTA";
 import { ScrollStory } from "@/components/sections/ScrollStory";
 import { MaterialGallery } from "@/components/sections/MaterialGallery";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -76,7 +78,7 @@ const slides = [
 const faq = [
   [
     "Como pedir orçamento?",
-    "Selecione materiais no catálogo ou abra o orçamento rápido. Ao terminar, você poderá revisar e enviar sua mensagem no WhatsApp.",
+    "Escolha materiais no catálogo ou responda ao miniquestionário de três etapas. Revise sua lista e continue a conversa com a HLS no WhatsApp.",
   ],
   [
     "Quais medidas estão disponíveis?",
@@ -157,6 +159,7 @@ export default function App() {
   }, [menu]);
   return (
     <>
+      <BrandIntro />
       <a className="skip-link" href="#main">
         Pular para o conteúdo
       </a>
@@ -259,6 +262,7 @@ export default function App() {
           category={category}
           setCategory={setCategory}
         />
+        <QuoteCTA onQuote={openQuote} />
         <MaterialGallery onSelect={setCategory} />
         <ScrollStory onQuote={openQuote} />
         <section id="sobre" className="about-section">

@@ -2540,3 +2540,422 @@ em {
     will-change: auto;
   }
 }
+/* Short, company-specific quote flow and its primary conversion block. */
+.quote-invitation {
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  gap: 70px;
+  align-items: center;
+  background: #102f3b;
+  color: #f5faf8;
+  padding: 60px;
+  margin-top: 10px;
+  margin-bottom: 35px;
+  position: relative;
+  overflow: hidden;
+}
+.quote-invitation:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 140px;
+  height: 3px;
+  background: var(--teal);
+  pointer-events: none;
+}
+.quote-invitation-copy h2 {
+  font-size: clamp(32px, 3.5vw, 50px);
+}
+.quote-invitation-copy h2 em {
+  color: #77d4da;
+}
+.quote-invitation-copy > p:not(.eyebrow) {
+  max-width: 470px;
+  color: #c6d8dc;
+  font-size: 14px;
+  margin-top: 24px;
+}
+.quote-invitation-copy ul {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0 0;
+  display: grid;
+  gap: 14px;
+}
+.quote-invitation-copy li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: #d9e9e9;
+}
+.quote-invitation-copy li svg {
+  color: #6bd1d8;
+  flex-shrink: 0;
+}
+.quote-invitation-panel {
+  padding: 30px;
+  background: #f5f8f5;
+  color: var(--ink);
+  border: 1px solid #dce8e4;
+}
+.quote-invitation-icon {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font: 9px monospace;
+  color: #476c75;
+  margin-bottom: 24px;
+}
+.quote-invitation-panel > h3 {
+  font-size: 27px;
+  letter-spacing: -0.7px;
+  line-height: 1.15;
+}
+.quote-invitation-panel ol {
+  list-style: none;
+  margin: 28px 0;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+}
+.quote-invitation-panel li {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+.quote-invitation-panel li > span {
+  font: 9px monospace;
+  color: #197883;
+  border: 1px solid #a8c8c8;
+  min-width: 28px;
+  min-height: 28px;
+  display: grid;
+  place-items: center;
+}
+.quote-invitation-panel strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+.quote-invitation-panel li p {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.quote-invitation-panel > .button {
+  width: 100%;
+  justify-content: space-between;
+  font-size: 13px;
+}
+.quote-invitation-note {
+  text-align: center;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 15px;
+  line-height: 1.8;
+}
+.quote-steps {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.quote-steps li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: #526773;
+}
+.quote-steps li > span {
+  height: 24px;
+  width: 24px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #b2c8c8;
+  background: #edf2f0;
+  font: 10px monospace;
+  flex-shrink: 0;
+}
+.quote-steps li[aria-current="step"] {
+  font-weight: 600;
+  color: #134c58;
+}
+.quote-steps li[aria-current="step"] > span {
+  background: #143f4b;
+  border-color: #143f4b;
+  color: #fff;
+}
+.quote-steps li.is-complete > span {
+  background: #dcefed;
+  color: #1f6e69;
+  border-color: #b6d8d4;
+}
+.quote-dialog progress {
+  margin: 18px 0 28px;
+}
+.quote-dialog .field select {
+  border: 1px solid #acbec1;
+  background: #fff;
+  min-height: 46px;
+  padding: 10px 12px;
+  color: var(--ink);
+  width: 100%;
+  border-radius: 0;
+}
+.quote-dialog .category-options {
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.quote-dialog .category-options label {
+  padding: 10px 12px;
+  min-height: 44px;
+}
+.quote-guidance {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  background: #e8f1ef;
+  border: 1px solid #b4cfcc;
+  cursor: pointer;
+  font-size: 12px;
+  min-height: 60px;
+}
+.quote-guidance.selected {
+  border-color: #3b8b90;
+  background: #daeeea;
+}
+.quote-guidance input {
+  accent-color: #167985;
+}
+.quote-guidance small {
+  display: block;
+  font-size: 10px;
+  color: #526773;
+  margin-top: 5px;
+}
+.quote-list-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+.quote-list-heading h3 {
+  font-size: 13px;
+}
+.quote-list-heading > span {
+  font-size: 10px;
+  color: #526773;
+}
+.quote-list-block {
+  margin-top: 24px;
+}
+.quote-list-block .interest-list {
+  margin-top: 4px;
+  max-height: 290px;
+  overflow-y: auto;
+  padding-right: 5px;
+  overscroll-behavior: contain;
+}
+.quote-dialog .quote-field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.quote-field-grid .field {
+  min-width: 0;
+}
+.quote-consult-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #42636c;
+  background: #e8efeb;
+  padding: 14px;
+  font-size: 11px;
+}
+.quote-consult-note svg {
+  flex-shrink: 0;
+}
+.quote-extra {
+  margin-top: 22px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+}
+.quote-extra > summary {
+  font-size: 12px;
+  cursor: pointer;
+  min-height: 32px;
+  align-content: center;
+}
+.quote-review-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 24px;
+}
+.quote-review-heading .eyebrow {
+  font-size: 8px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+.quote-review-heading h3 {
+  font-size: 16px;
+}
+.quote-review-heading > svg {
+  color: #227b78;
+  flex-shrink: 0;
+}
+.quote-edit-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.quote-edit-actions .text-link {
+  font-size: 11px;
+  gap: 8px;
+  min-height: 44px;
+}
+.quote-dialog .quote-actions {
+  margin-top: 26px;
+  padding-top: 20px;
+}
+.quote-no-obligation {
+  font-size: 11px;
+  color: #526773;
+}
+.quote-data-note {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 16px;
+  line-height: 1.8;
+}
+.quote-final-cta {
+  gap: 12px !important;
+}
+.quote-dialog .final-note {
+  font-size: 11px;
+}
+@media (max-width: 1000px) {
+  .quote-invitation {
+    padding: 40px;
+    gap: 35px;
+  }
+  .quote-invitation-panel {
+    padding: 24px;
+  }
+  .quote-invitation-copy h2 {
+    font-size: 37px;
+  }
+}
+@media (max-width: 760px) {
+  .quote-invitation {
+    grid-template-columns: 1fr;
+    padding: 30px 22px;
+    gap: 30px;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  .quote-invitation-copy .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .quote-invitation-copy h2 {
+    font-size: 34px;
+    letter-spacing: -1.2px;
+  }
+  .quote-invitation-copy > p:not(.eyebrow) {
+    font-size: 12px;
+    margin-top: 20px;
+  }
+  .quote-invitation-copy ul {
+    gap: 12px;
+    margin-top: 22px;
+  }
+  .quote-invitation-copy li {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  .quote-invitation-panel {
+    padding: 24px 18px;
+  }
+  .quote-invitation-panel > h3 {
+    font-size: 26px;
+  }
+  .quote-invitation-icon {
+    font-size: 8px;
+    gap: 10px;
+  }
+  .quote-invitation-panel ol {
+    margin: 24px 0;
+    gap: 18px;
+  }
+  .quote-invitation-panel > .button {
+    font-size: 12px;
+    padding-inline: 16px;
+  }
+  .quote-steps {
+    gap: 8px;
+  }
+  .quote-steps li {
+    font-size: 9px;
+    gap: 5px;
+  }
+  .quote-dialog .quote-field-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .quote-field-grid .field {
+    margin-block: 14px;
+  }
+  .quote-dialog .quote-actions {
+    gap: 10px;
+  }
+  .quote-final-cta {
+    font-size: 11px !important;
+    padding-inline: 13px !important;
+    gap: 8px !important;
+  }
+  .quote-review-heading h3 {
+    font-size: 14px;
+  }
+  .quote-edit-actions {
+    gap: 10px;
+  }
+  .quote-edit-actions .text-link {
+    font-size: 10px;
+  }
+  .quote-no-obligation {
+    font-size: 10px;
+  }
+  .quote-dialog .quote-summary {
+    font-size: 12px;
+  }
+}
+@media (max-width: 360px) {
+  .quote-invitation-copy h2 {
+    font-size: 29px;
+  }
+  .quote-invitation-panel > h3 {
+    font-size: 24px;
+  }
+  .quote-dialog .quote-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .quote-final-cta {
+    flex: 1;
+  }
+  .quote-invitation {
+    padding-inline: 18px;
+  }
+  .quote-steps li {
+    font-size: 8px;
+  }
+}

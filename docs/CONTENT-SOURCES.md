@@ -70,3 +70,9 @@ O usuário identificou o material de referência como antigo. O texto Code Maker
 O terceiro vídeo recebido mostra a carga/caminhão HLS. Sua aplicação está descrita em MEDIA.md; o clipe é 720p, não 4K. Três novas fotos Pexels com fontes de mais de 3840 px foram baixadas/inspecionadas, com atribuições e licença em MEDIA.md e photography-assets.json. Não se adicionaram promessas de entrega, estoque ou preços a partir dessas cenas.
 
 O site oficial /produtos foi consultado novamente como referência do catálogo existente; suas medidas continuam preservadas. As avaliações e o total/nota continuam sendo o registro das capturas de 06/11/2026, sem alegação de sincronização automática.
+
+## Referências adicionais de interação
+
+https://studio-harmonycom.vercel.app/ foi consultado como referência da intro. Verificado no HTML/CSS público: máscara na marca, linha crescente, cortina de saída e entradas escalonadas da hero, com preferência reduzida e indicação por sessão. A implementação HLS é própria, usa sua logo real e não inclui a marca, copy ou fotos da referência.
+
+https://churrasco-no-prato-previa.vercel.app/ e seus recursos públicos CSS/JS foram consultados como referência de mudanças visuais na rolagem (entradas, parallax, expansão de imagens e cenas por seção). A direção foi adaptada aos materiais reais da HLS, sem textos, fotos de comida ou promessas da referência. Nenhuma ferramenta de navegador compartilhado estava exposta; a inspeção das referências usou recursos públicos obtidos com TLS verificado, seguida de testes da implementação HLS em Chromium local.

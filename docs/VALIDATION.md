@@ -1,5 +1,19 @@
 # Validação — 06/11/2026
 
+## Resultado atual: questionário, mobile, intro e cenas
+
+`npm run build` e a suíte completa `npm test` passaram após as alterações finais: **29 testes em Chromium, um worker, 58,5 s**. Os registros abaixo preservam as validações anteriores; este é o resultado mais recente.
+
+- Miniquestionário em três etapas: opção de orientação sem bitola, categoria sem descrição obrigatória, contexto da obra, lista e quantidades, edição do resumo, respostas preservadas ao voltar/reabrir, nome obrigatório, Enter sem abrir WhatsApp e mensagem codificada para o número oficial. Nenhuma mensagem foi enviada.
+- Site móvel completo em 320×740, 390×844, 768×1024 e 844×390: seções sem corte lateral, menu com contato alcançável, controles principais de toque, diálogo sem overflow, campos de pelo menos 16 px e players 9:16. Em paisagem curta os controles da cena continuam alcançáveis e a rolagem segue alterando o vídeo.
+- Intro com logo real: saída automática, uma vez por aba, skip imediato em touch/teclado, preferência reduzida e link direto. A escala inicial da hero não amplia a página. O conteúdo não depende da conclusão de downloads.
+- Galeria: mudanças reais de etapa 0→1→2 em desktop e celular, fotos locais carregadas com fontes 3840w, controles diretos de etapa, link que seleciona Rolos e suas cinco medidas, opção estática e movimento reduzido. Inspeção visual em desktop e celular; ajuste também conferido em desktop de 768 px de altura.
+- Regressões: 73 produtos, catálogo compacto, avaliações com deslocamento real e pausa, vídeo controlado por rolagem/toque, três players com áudio após ação, teclado e coverflow. Axe na página e no diálogo: zero violações detectadas no escopo automatizado.
+
+A primeira execução encontrou uma divergência entre o texto visível dos botões de etapa e seus nomes acessíveis. Os rótulos redundantes foram removidos para usar o próprio texto visível; build e os 29 testes foram executados novamente e passaram. Isso não substitui revisão com leitor de tela ou dispositivos físicos. Os limites de Chromium/emulação e as fontes datadas das avaliações permanecem os mesmos.
+
+## Histórico do ambiente e das versões anteriores
+
 Ambiente preparado com Node.js 24.22.1, npm 11.9.0, Chromium do sistema e FFmpeg. Instalação repetida com `npm ci --cache /tmp/hls-npm-cache --no-audit --no-fund`, sem modificar o lockfile. TypeScript e build de produção concluídos. Servidor Vite iniciado, reiniciado após reinstalação para renovar cache e validado com requisições e navegador.
 
 ## Testes executados

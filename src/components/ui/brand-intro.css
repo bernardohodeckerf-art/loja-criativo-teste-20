@@ -1,0 +1,207 @@
+/* HLS interpretation of a brand reveal and rising curtain; no media loader. */
+.brand-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background: #0d2935;
+  color: #eef8f6;
+  pointer-events: none;
+  animation: hls-curtain 900ms cubic-bezier(0.76, 0, 0.24, 1) 1000ms forwards;
+  will-change: transform;
+}
+.brand-intro-center {
+  width: min(100%, 450px);
+  text-align: center;
+}
+.brand-intro-logo-mask {
+  overflow: hidden;
+  padding-block: 10px;
+  display: flex;
+  justify-content: center;
+}
+.brand-intro-logo-mask img {
+  width: 132px;
+  height: 132px;
+  object-fit: contain;
+  animation: hls-brand-rise 650ms cubic-bezier(0.16, 0.84, 0.26, 1) 80ms both;
+}
+.brand-intro-line {
+  display: block;
+  height: 1px;
+  background: #66d1d9;
+  width: 104px;
+  margin: 25px auto;
+  transform-origin: left;
+  animation: hls-line-grow 650ms cubic-bezier(0.22, 1, 0.36, 1) 350ms both;
+}
+.brand-intro-location {
+  font: 9px monospace;
+  letter-spacing: 3px;
+  color: #a8d4da;
+  animation: hls-brand-fade 500ms ease 330ms both;
+}
+.brand-intro-title {
+  font:
+    400 clamp(25px, 4vw, 36px)/1.3 Arial,
+    Helvetica,
+    sans-serif;
+  letter-spacing: -1px;
+  margin-top: 16px;
+  animation: hls-brand-fade 600ms ease 450ms both;
+}
+.brand-intro-edge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #63cbd4;
+  opacity: 0.65;
+}
+.brand-intro-skip {
+  position: fixed;
+  top: max(18px, env(safe-area-inset-top));
+  right: max(22px, env(safe-area-inset-right));
+  z-index: 301;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 14px;
+  color: #d3e7e8;
+  background: #143a47;
+  border: 1px solid #6d9aa5;
+  font-size: 11px;
+}
+.brand-intro-skip:hover {
+  background: #1f4b57;
+}
+.hero-line-mask {
+  display: block;
+  overflow: clip;
+  padding-block: 0.12em 0.2em;
+  margin-block: -0.12em -0.2em;
+}
+.hero-line-mask > span {
+  display: block;
+}
+.hls-intro-active .hero-line-mask > span {
+  animation: hls-hero-line 900ms cubic-bezier(0.16, 0.84, 0.26, 1) 1250ms both;
+}
+.hls-intro-active .hero-line-mask:nth-child(2) > span {
+  animation-delay: 1370ms;
+}
+.hls-intro-active .hero-content > .eyebrow,
+.hls-intro-active .hero-sub,
+.hls-intro-active .hero-content > .magnetic-button {
+  animation: hls-brand-fade 600ms ease 950ms both;
+}
+.hls-intro-active .hero video {
+  animation: hls-hero-settle 1000ms cubic-bezier(0.22, 1, 0.36, 1) 750ms both;
+}
+@keyframes hls-curtain {
+  to {
+    transform: translate3d(0, -103%, 0);
+    visibility: hidden;
+  }
+}
+@keyframes hls-brand-rise {
+  from {
+    opacity: 0;
+    transform: translateY(115%) rotate(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes hls-brand-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes hls-line-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes hls-hero-line {
+  from {
+    transform: translateY(112%) rotate(1deg);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes hls-hero-settle {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@media (max-width: 760px) {
+  .brand-intro-logo-mask img {
+    width: 116px;
+    height: 116px;
+  }
+  .brand-intro-line {
+    margin-block: 22px;
+    width: 88px;
+  }
+  .brand-intro-location {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+  .brand-intro-skip {
+    right: max(16px, env(safe-area-inset-right));
+    top: max(16px, env(safe-area-inset-top));
+    font-size: 10px;
+  }
+  .brand-intro-title {
+    font-size: 28px;
+  }
+}
+@media (max-height: 450px) {
+  .brand-intro-logo-mask img {
+    width: 82px;
+    height: 82px;
+  }
+  .brand-intro-line {
+    margin-block: 15px;
+  }
+  .brand-intro-title {
+    font-size: 25px;
+    margin-top: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-intro,
+  .brand-intro-skip {
+    display: none;
+  }
+  .hls-intro-active .hero-line-mask > span,
+  .hls-intro-active .hero-content > .eyebrow,
+  .hls-intro-active .hero-sub,
+  .hls-intro-active .hero-content > .magnetic-button,
+  .hls-intro-active .hero video {
+    animation: none;
+  }
+}
+
+/* Clip the moving media, not the page: prevents scale from widening mobile. */
+.hero {
+  overflow: hidden;
+  overflow: clip;
+}

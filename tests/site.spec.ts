@@ -41,14 +41,18 @@ test("questionário: validação, quantidades, retorno, revisão e URL segura", 
     .first()
     .getByRole("button", { name: /Adicionar à lista:/ })
     .click();
-  await page
-    .getByRole("button", { name: "Minha lista (1)", exact: true })
-    .click();
+  const trigger = page.getByRole("button", {
+    name: "Minha lista (1)",
+    exact: true,
+  });
+  await trigger.click();
   const dialog = page.getByRole("dialog");
   const next = () =>
     dialog.getByRole("button", { name: "Continuar", exact: true }).click();
   await expect(dialog).toBeVisible();
-  await next();
+  await expect(
+    dialog.getByRole("heading", { name: "O que sua obra precisa?" }),
+  ).toBeFocused();
   await page
     .getByLabel("Quantidade de Prego 10x10", { exact: true })
     .fill("-1");
@@ -59,14 +63,20 @@ test("questionário: validação, quantidades, retorno, revisão e URL segura", 
     .getByLabel("Unidade de Prego 10x10", { exact: true })
     .selectOption("kg");
   await next();
+  await expect(
+    dialog.getByRole("heading", { name: "Onde e quando você precisa?" }),
+  ).toBeFocused();
   await next();
   await expect(page.getByRole("alert")).toContainText("cidade");
   await page.getByRole("textbox", { name: "Cidade" }).fill("Blumenau");
   await page.getByLabel("Entrega", { exact: true }).check();
   await next();
+  await expect(page.getByRole("alert")).toContainText("quando");
   await page.getByLabel("Nesta semana", { exact: true }).check();
   await next();
-  await next();
+  await dialog
+    .getByRole("button", { name: "Quero cotar no WhatsApp", exact: true })
+    .click();
   await expect(page.getByRole("alert")).toContainText("chamar");
   await page.getByRole("textbox", { name: "Seu nome" }).fill("João & Obra");
   await dialog.getByRole("button", { name: "Voltar", exact: true }).click();
@@ -75,9 +85,8 @@ test("questionário: validação, quantidades, retorno, revisão e URL segura", 
   await expect(page.getByRole("textbox", { name: "Seu nome" })).toHaveValue(
     "João & Obra",
   );
-  await next();
-  const href = await page
-    .getByRole("link", { name: "Continuar no WhatsApp" })
+  const href = await dialog
+    .getByRole("link", { name: "Quero cotar no WhatsApp", exact: true })
     .getAttribute("href");
   const url = new URL(href!);
   expect(url.origin + url.pathname).toBe("https://wa.me/554733306633");
@@ -89,12 +98,11 @@ test("questionário: validação, quantidades, retorno, revisão e URL segura", 
   ).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(dialog).not.toBeVisible();
-  await expect(
-    page.getByRole("button", { name: "Minha lista (1)", exact: true }),
-  ).toBeFocused();
+  await expect(trigger).toBeFocused();
 });
 test("acessibilidade automatizada: página e diálogo", async ({ page }) => {
   await page.goto("/");
+  await page.keyboard.press("Escape");
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await page.getByRole("button", { name: "Orçamento rápido" }).click();
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
@@ -260,10 +268,6 @@ test("questionário vazio e remoção de item não permitem avançar sem materia
   await expect(page.getByRole("alert")).toContainText(
     "Selecione uma categoria",
   );
-  await page.getByRole("checkbox", { name: "Pregos", exact: true }).check();
-  await dialog.getByRole("button", { name: "Continuar", exact: true }).click();
-  await dialog.getByRole("button", { name: "Continuar", exact: true }).click();
-  await expect(page.getByRole("alert")).toContainText("Descreva o material");
   await page.keyboard.press("Escape");
   await page.getByLabel("Filtrar categoria").selectOption("pregos");
   await page
@@ -278,6 +282,10 @@ test("questionário vazio e remoção de item não permitem avançar sem materia
     .getByRole("button", { name: "Remover Prego 10x10", exact: true })
     .click();
   await expect(dialog.locator(".interest-item")).toHaveCount(0);
+  await dialog.getByRole("button", { name: "Continuar", exact: true }).click();
+  await expect(page.getByRole("alert")).toContainText(
+    "Selecione uma categoria",
+  );
   await page.keyboard.press("Escape");
   await expect(
     page.getByRole("button", { name: "Minha lista (0)", exact: true }),

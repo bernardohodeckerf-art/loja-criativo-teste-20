@@ -37,10 +37,6 @@ test("catálogo compacto: uma foto por categoria e todas as medidas selecionáve
     .getByRole("button", { name: "Consultar Estribo 7x17", exact: true })
     .click();
   await expect(page.getByRole("dialog")).toBeVisible();
-  await page
-    .getByRole("dialog")
-    .getByRole("button", { name: "Continuar", exact: true })
-    .click();
   await expect(page.getByRole("dialog")).toContainText("Estribo 7x17");
 });
 
