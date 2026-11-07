@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useMotion";
 import "./brand-intro.css";
 
-const storageKey = "hls:intro:seen";
+const storageKey = "hls:intro:construction:seen";
 function shouldShowIntro() {
   if (
     matchMedia("(prefers-reduced-motion: reduce)").matches ||
@@ -41,7 +41,7 @@ export function BrandIntro() {
     } catch {
       /* Navigation remains available if storage is disabled. */
     }
-    const timeout = window.setTimeout(dismiss, 2500);
+    const timeout = window.setTimeout(dismiss, 3400);
     const key = (event: KeyboardEvent) => {
       if (event.key === "Escape" || event.key === "Tab") dismiss();
     };
@@ -75,22 +75,47 @@ export function BrandIntro() {
         className="brand-intro"
         aria-hidden="true"
         onAnimationEnd={(event) => {
-          if (event.animationName === "hls-curtain") setCurtainOpen(true);
+          if (event.animationName === "hls-opening-exit") setCurtainOpen(true);
         }}
       >
+        <div className="brand-intro-grid" />
+        <div className="brand-intro-top">
+          <img src="/images/hls-logo.png" alt="" width="225" height="225" fetchPriority="high" />
+          <span>HLS FERRAGENS<br />BLUMENAU · SC</span>
+        </div>
+        <svg className="brand-intro-structure" viewBox="0 0 600 600" fill="none">
+          <g className="intro-drawing">
+            <path pathLength="1" d="M110 490V160L300 60L490 160V490L300 570Z M110 160L300 270L490 160 M300 270V570 M110 325L300 435L490 325 M205 110V540 M395 110V540 M110 490L490 160 M110 160L490 490" />
+            <path pathLength="1" d="M80 490H30V160H80 M520 160H570V490H520 M110 125V95L300 0L490 95V125" />
+          </g>
+          <g className="intro-drawing-points">
+            <circle cx="110" cy="160" r="7" /><circle cx="300" cy="270" r="7" />
+            <circle cx="490" cy="160" r="7" /><circle cx="300" cy="435" r="7" />
+          </g>
+        </svg>
         <div className="brand-intro-center">
-          <div className="brand-intro-logo-mask">
-            <img
-              src="/images/hls-logo.png"
-              alt=""
-              width="225"
-              height="225"
-              fetchPriority="high"
-            />
+          <p className="brand-intro-kicker">DA PRIMEIRA IDEIA À ESTRUTURA.</p>
+          <div className="brand-intro-words">
+            <span className="intro-word-mask"><span>SUA OBRA.</span></span>
+            <span className="intro-word-mask"><span>NOSSA <em>FORÇA.</em></span></span>
           </div>
-          <span className="brand-intro-line" />
-          <p className="brand-intro-location">BLUMENAU · SANTA CATARINA</p>
-          <p className="brand-intro-title">A força da sua obra.</p>
+          <div className="brand-intro-materials">
+            {[
+              ["steel-detail", "01 / AÇO"],
+              ["mesh-roll", "02 / CONEXÃO"],
+              ["coils", "03 / POSSIBILIDADES"],
+            ].map(([file, label], index) => (
+              <div className={`intro-material intro-material-${index}`} key={file}>
+                <img src={`/images/${file}-480.webp`} width="480" height="320" alt="" />
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="brand-intro-bottom">
+          <span>MATÉRIA QUE DÁ FORMA AO SEU PROJETO.</span>
+          <span className="intro-build-line"><i /></span>
+          <span>EXPLORE A HLS ↓</span>
         </div>
         <span className="brand-intro-edge" />
       </div>

@@ -46,6 +46,15 @@ export function MaterialGallery({
   const [active, setActive] = useState(0),
     [staticView, setStaticView] = useState(false);
   const reduced = useReducedMotion();
+  const [pinnedLayout, setPinnedLayout] = useState(
+    () => matchMedia("(min-width: 901px) and (min-height: 651px)").matches,
+  );
+  useEffect(() => {
+    const query = matchMedia("(min-width: 901px) and (min-height: 651px)");
+    const update = () => setPinnedLayout(query.matches);
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
   const stationary = reduced || staticView;
 
   useEffect(() => {
@@ -63,6 +72,7 @@ export function MaterialGallery({
         card.style.removeProperty("--material-strength");
         card.style.removeProperty("--material-parallax");
         card.style.removeProperty("--material-reveal");
+        card.style.removeProperty("--material-entrance");
       });
       return;
     }
@@ -84,10 +94,8 @@ export function MaterialGallery({
       } else {
         // On touch/small screens each real photo is a normal-flow chapter.
         // Its centre drives the same sequence without a pinned or locked page.
-        const centres = cards.map((card) => {
-          const r = card.getBoundingClientRect();
-          return r.top + r.height / 2;
-        });
+        const railTop = cards[0].parentElement!.getBoundingClientRect().top;
+        const centres = cards.map((card) => railTop + card.offsetTop + card.offsetHeight / 2);
         const target = innerHeight * 0.52;
         let position = 0;
         if (target >= centres[centres.length - 1]) position = photos.length - 1;
@@ -117,7 +125,12 @@ export function MaterialGallery({
       }
       cards.forEach((card, index) => {
         const strength = clamp(1 - Math.abs(position - index));
-        const rect = card.getBoundingClientRect();
+        const visual = card.getBoundingClientRect();
+        const rect = pinned ? visual : {
+          top: card.parentElement!.getBoundingClientRect().top + card.offsetTop,
+          height: card.offsetHeight,
+        };
+        card.style.setProperty("--material-entrance", String(pinned ? 1 : clamp((innerHeight * .94 - rect.top) / Math.min(rect.height * .4, innerHeight * .36))));
         const local = Math.max(
           -1,
           Math.min(
@@ -141,6 +154,7 @@ export function MaterialGallery({
     };
     const observer = new IntersectionObserver(
       ([entry]) => {
+        el.dataset.sceneVisible = String(entry.isIntersecting);
         if (entry.isIntersecting) schedule();
       },
       { rootMargin: "100px" },
@@ -161,7 +175,7 @@ export function MaterialGallery({
       window.removeEventListener("resize", schedule);
       document.removeEventListener("visibilitychange", schedule);
     };
-  }, [stationary]);
+  }, [stationary, pinnedLayout]);
 
   function goTo(index: number) {
     const scrollTrack = track.current,
@@ -263,6 +277,8 @@ export function MaterialGallery({
                 onClick={() => onSelect(photo.id)}
                 data-material-index={index}
                 data-active={active === index ? "true" : "false"}
+                inert={!stationary && pinnedLayout && active !== index ? true : undefined}
+                aria-hidden={!stationary && pinnedLayout && active !== index ? true : undefined}
               >
                 <div className="material-photo-window">
                   <img
@@ -272,7 +288,7 @@ export function MaterialGallery({
                         (size) => `/images/${photo.file}-${size}.webp ${size}w`,
                       )
                       .join(", ")}
-                    sizes="(max-width:900px) 130vw, 48vw"
+                    sizes="(max-width:900px) 100vw, 65vw"
                     width="3840"
                     height={photo.file === "steel-detail" ? 2160 : 2560}
                     alt={`${photo.alt}, fotografia ilustrativa`}

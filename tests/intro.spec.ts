@@ -1,31 +1,36 @@
 import { test, expect } from "@playwright/test";
 
-test("abertura HLS: logo real, cortina automática e sem repetição na mesma aba", async ({
+test("abertura HLS: estrutura desenhada, fotos e saída diagonal e sem repetição na mesma aba", async ({
   page,
 }) => {
   await page.goto("/");
   const intro = page.locator(".brand-intro");
   await expect(intro).toBeVisible();
   await expect(intro).toHaveAttribute("aria-hidden", "true");
-  await expect(intro.locator("img")).toHaveAttribute(
+  await expect(intro.locator(".brand-intro-top img")).toHaveAttribute(
     "src",
     "/images/hls-logo.png",
   );
   await expect(
     page.getByRole("button", { name: "Pular abertura" }),
   ).toBeVisible();
+  await expect(intro.locator(".intro-material img")).toHaveCount(3);
+  await expect(intro.locator(".intro-word-mask")).toHaveCount(2);
+  await expect(intro).toContainText("SUA OBRA.");
+  await expect(intro).toContainText("NOSSA FORÇA.");
+  await expect(intro.locator(".intro-drawing path")).toHaveCount(2);
   expect(
     await page.evaluate(() => getComputedStyle(document.body).overflow),
   ).not.toBe("hidden");
-  await expect(intro).toHaveCount(0, { timeout: 3000 });
+  await expect(intro).toHaveCount(0, { timeout: 4500 });
   await expect(page.locator("html")).not.toHaveClass(/hls-intro-active/, {
-    timeout: 3000,
+    timeout: 4500,
   });
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await page.reload();
   await expect(intro).toHaveCount(0);
   expect(
-    await page.evaluate(() => sessionStorage.getItem("hls:intro:seen")),
+    await page.evaluate(() => sessionStorage.getItem("hls:intro:construction:seen")),
   ).toBe("1");
 });
 

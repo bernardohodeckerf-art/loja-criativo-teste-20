@@ -93,6 +93,11 @@ test("paisagem curta: controles da cena continuam utilizáveis e players preserv
   });
   expect(usable).toBeTruthy();
   for (const player of await page.locator("#videos .vertical-player").all()) {
+    await player.scrollIntoViewIfNeeded();
+    await expect.poll(() => player.evaluate((node) => {
+      const rect = node.getBoundingClientRect();
+      return Math.abs(rect.width / rect.height - 9 / 16);
+    })).toBeLessThan(.005);
     const box = await player.boundingBox();
     expect(box!.width / box!.height).toBeCloseTo(9 / 16, 2);
   }

@@ -27,10 +27,11 @@ Os testes Playwright usam `/usr/bin/chromium` quando disponível. Em outra máqu
 - `src/data/catalog.json`: 73 entradas extraídas do catálogo oficial, com as medidas das capturas fornecidas.
 - `src/data/company.ts`: único lugar para configurar contatos e endereço.
 - `src/components/sections/ScrollStory.tsx`: cena do caminhão que avança e retrocede com o scroll em desktop/celular; player completo com áudio em `#video-carga`.
-- `src/components/sections/MaterialGallery.tsx` e `material-gallery.css`: três cenas que mudam com a rolagem, capítulos verticais no celular, controles de etapa e opção estática. Fotografias locais com variantes WebP 480/960/1920/3840 px e carregamento lazy.
+- `src/components/sections/MaterialGallery.tsx` e `material-gallery.css`: três cenas que aparecem uma por vez no desktop e se revelam em capítulos verticais no celular, com controles de etapa e opção estática. Fotografias locais com variantes WebP 480/960/1920/3840 px e carregamento lazy.
 - `src/data/reviews.ts`: nove avaliações transcritas das capturas do Google enviadas, com notas originais e data do registro. Sem atualização automática.
 - `src/lib/quote.ts`: mensagem e validação do miniquestionário de 3 etapas (materiais, local/previsão e nome/revisão). Opção de orientação sem exigir bitola, contexto da obra opcional e dados apenas em memória.
-- `src/components/ui/brand-intro.tsx` e `brand-intro.css`: abertura com logo real e cortina, uma vez por aba, pulável e sem esperar downloads. Movimento reduzido e links diretos não passam pela intro.
+- `src/components/ui/brand-intro.tsx` e `brand-intro.css`: abertura com desenho animado de estrutura, palavras em movimento, montagem de fotos e saída diagonal. Uma vez por aba, pulável e sem esperar downloads. Movimento reduzido e links diretos não passam pela intro.
+- `src/hooks/useScrollReveal.ts`: blocos que aguardam a rolagem para entrar com movimentos diferentes; atende conteúdo dinâmico, foco de teclado e preferência reduzida.
 - `src/components/sections/QuoteCTA.tsx`: chamada personalizada “Quero cotar minha obra”, conectada ao mesmo orçamento e à lista do catálogo.
 - `src/data/videos.ts`: os três vídeos HLS fornecidos, inspecionados e integrados, com títulos, resumos e posters extraídos. Reprodução por clique, enquadramento 9:16, áudio original e pausa mútua.
 - `public/images/` e `public/videos/`: mídia servida localmente. Fotos de banco são ilustrativas da categoria, não demonstram estoque, marca ou a medida exata de cada item. Grampos não recebem foto de pregos.

@@ -41,7 +41,12 @@ test("galeria muda de cena ao rolar no desktop e no celular, mantendo acesso às
       await expect(root.locator(".material-current-caption")).toContainText(label);
       const card = root.locator(".material-photo").nth(index);
       await expect(card).toHaveAttribute("data-active", "true");
+      await expect(card).toHaveCSS("opacity", "1");
       await expect(card.getByRole("heading")).toBeVisible();
+      if (width === 1440) {
+        await expect(root.locator('.material-photo:not([data-active="true"])').first()).toHaveAttribute("inert", "");
+        expect(await root.locator(".material-photo").evaluateAll((cards) => cards.filter((card) => getComputedStyle(card).visibility === "visible").length)).toBe(1);
+      }
       await expect(card.locator("img")).toHaveAttribute("srcset", /3840w/);
       await expect
         .poll(() => card.locator("img").evaluate((img) => (img as HTMLImageElement).naturalWidth))

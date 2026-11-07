@@ -1,8 +1,20 @@
-# Validação — 06/11/2026
+# Validação
 
-## Resultado atual: questionário, mobile, intro e cenas
+## Resultado atual: entradas por rolagem e intro industrial
 
-`npm run build` e a suíte completa `npm test` passaram após as alterações finais: **29 testes em Chromium, um worker, 58,5 s**. Os registros abaixo preservam as validações anteriores; este é o resultado mais recente.
+Build de produção passou. A suíte completa `npm test` passou com **33 testes em Chromium e um worker**, em aproximadamente 1,5 minuto. Este é o resultado mais recente; os registros seguintes são de versões anteriores.
+
+`tests/reveal.spec.ts` verifica que fotos, títulos, patrocínios e contato começam com opacidade zero fora da tela, aguardam sua própria rolagem e usam quatro movimentos distintos no percurso exercitado em 1440 e 390 px. Um gesto CDP de toque faz o próximo título aparecer no contexto móvel real emulado, mantendo a rolagem vertical. Testados foco imediato, mudança dinâmica de movimento reduzido e clique durante a entrada: o alvo fica estável enquanto pressionado e abre o questionário.
+
+Na galeria desktop, apenas uma das três cenas permanece visível e interativa; as outras ficam ocultas/inert. Navegação por etapas, categoria Rolos, opção estática, fontes 3840w e entradas móveis com opacidade final 1 passaram. A intro foi verificada com desenho SVG, duas linhas de palavras, três recortes fotográficos, saída automática diagonal, chave por sessão, skip e preferência reduzida. Capturas em 320×740, 390×844, 844×390 e 1440×900 foram inspecionadas.
+
+Uma gravação contínua em 390×844 percorreu os 16.099 px de rolagem disponíveis após a intro. Resultado: zero overflow horizontal, nenhum bloco com entrada pendente ao final, nenhuma imagem de `main` quebrada e nenhuma exceção JavaScript observada. Arquivos de demonstração são temporários, fora do repositório. Não houve teste em aparelho físico ou benchmark de taxa de quadros.
+
+As verificações iniciais identificaram máscaras completamente fechadas que impediam a observação de interseção e uma mudança de posição ao focar um botão durante a entrada. A preparação usa uma faixa transparente de área observável e os efeitos pausam durante o pressionamento, mantendo a revelação imediata para teclado. Animações de cena aguardam a seção entrar na tela. Após as correções, todos os 33 testes passaram juntos, incluindo Axe sem violações detectadas no escopo da página e do diálogo, catálogo, questionário, avaliações e vídeos.
+
+## Versão anterior: questionário, mobile, intro e cenas
+
+`npm run build` e a suíte completa `npm test` passaram naquela versão com **29 testes em Chromium, um worker, 58,5 s**.
 
 - Miniquestionário em três etapas: opção de orientação sem bitola, categoria sem descrição obrigatória, contexto da obra, lista e quantidades, edição do resumo, respostas preservadas ao voltar/reabrir, nome obrigatório, Enter sem abrir WhatsApp e mensagem codificada para o número oficial. Nenhuma mensagem foi enviada.
 - Site móvel completo em 320×740, 390×844, 768×1024 e 844×390: seções sem corte lateral, menu com contato alcançável, controles principais de toque, diálogo sem overflow, campos de pelo menos 16 px e players 9:16. Em paisagem curta os controles da cena continuam alcançáveis e a rolagem segue alterando o vídeo.

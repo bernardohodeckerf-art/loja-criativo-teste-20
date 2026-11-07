@@ -1,4 +1,4 @@
-/* Native-scroll material chapters. All copies/links remain readable; emphasis is decorative. */
+/* Sequential material scenes: one at a time on desktop, scroll reveals on touch. */
 .material-gallery.material-experience {
   --material-progress: 0;
   padding-block: 70px 45px;
@@ -407,3 +407,43 @@
     display: none;
   }
 }
+
+/* Wide screens replace the scene instead of displaying all three materials. */
+@media (min-width: 901px) and (min-height: 651px) {
+  .material-experience:not(.is-static) .material-experience-scroll { height: 260svh; min-height: 1600px; }
+  .material-experience:not(.is-static) .material-photo-rail { position: relative; display: block; height: clamp(340px,52svh,560px); }
+  .material-experience:not(.is-static) .material-photo {
+    position: absolute; inset: 0; display: grid; grid-template-columns: 1.5fr 1fr;
+    margin: 0; width: 100%; height: 100%; transform: none; box-shadow: none;
+    visibility: hidden; opacity: 0; pointer-events: none;
+    border-color: #c7d5d4; background: #e8eeea;
+  }
+  .material-experience:not(.is-static) .material-photo[data-active="true"] { visibility: visible; opacity: 1; pointer-events: auto; }
+  .material-experience:not(.is-static) .material-photo-window { height: 100%; min-height: 0; clip-path: none; }
+  .material-experience:not(.is-static) .material-photo-window:after { display: none; }
+  .material-experience:not(.is-static) .material-photo img { filter: none; }
+  .material-experience:not(.is-static) .material-photo-caption { display: flex; flex-direction: column; justify-content: center; padding: clamp(28px,4vw,64px); min-height: 0; }
+  .material-experience:not(.is-static) .material-photo-caption h3 { font-size: clamp(32px,3.5vw,55px); letter-spacing: -1.7px; margin-block: 24px; }
+  .material-experience:not(.is-static) .material-photo-caption p { font-size: 14px; line-height: 1.8; }
+  .material-experience:not(.is-static) .material-category-link { margin-top: 28px; }
+  .material-experience:not(.is-static)[data-scene-visible="true"] .material-photo[data-active="true"] .material-photo-caption { animation: material-copy-enter 700ms cubic-bezier(.2,.7,.3,1) both; }
+  .material-experience:not(.is-static)[data-scene-visible="true"] .material-photo[data-active="true"][data-material-index="0"] .material-photo-window { animation: material-scene-up 850ms cubic-bezier(.2,.7,.3,1) both; }
+  .material-experience:not(.is-static)[data-scene-visible="true"] .material-photo[data-active="true"][data-material-index="1"] .material-photo-window { animation: material-scene-side 850ms cubic-bezier(.2,.7,.3,1) both; }
+  .material-experience:not(.is-static)[data-scene-visible="true"] .material-photo[data-active="true"][data-material-index="2"] .material-photo-window { animation: material-scene-round 950ms cubic-bezier(.2,.7,.3,1) both; }
+}
+/* Offscreen chapters wait for the scroll, with a different mask per material. */
+@media (max-width: 900px), (max-height: 650px) {
+  .material-experience .material-photo-rail { position: relative; }
+  .material-experience:not(.is-static) .material-photo {
+    --material-entrance: 0;
+    opacity: var(--material-entrance);
+    transform: translateY(calc((1 - var(--material-entrance)) * 48px));
+  }
+  .material-experience:not(.is-static) .material-photo[data-material-index="0"] { clip-path: inset(0 0 calc((1 - var(--material-entrance)) * 100%) 0); }
+  .material-experience:not(.is-static) .material-photo[data-material-index="1"] { clip-path: inset(0 calc((1 - var(--material-entrance)) * 100%) 0 0); }
+  .material-experience:not(.is-static) .material-photo[data-material-index="2"] { clip-path: inset(calc((1 - var(--material-entrance)) * 35%) calc((1 - var(--material-entrance)) * 25%) round calc((1 - var(--material-entrance)) * 140px)); }
+}
+@keyframes material-scene-up { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes material-scene-side { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes material-scene-round { from { clip-path: circle(0% at 50% 50%); } to { clip-path: circle(75% at 50% 50%); } }
+@keyframes material-copy-enter { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
